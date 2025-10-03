@@ -35,3 +35,9 @@ jobs:
           curl -f http://localhost:3000
           docker stop test-container
           docker rm test-container
+
+      - name: Tag Docker image
+        run: docker tag devops-demo:latest ${{ secrets.DOCKER_USERNAME }}/devops-demo:latest
+
+      - name: Push Docker image to Docker Hub
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/devops-demo:latest
